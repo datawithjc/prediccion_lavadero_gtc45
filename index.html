@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conceptos Clave — Proyección de Enfermedades Laborales</title>
+<style>
+:root{--azul:#1a5fa8;--azul-claro:#ddeeff;--verde:#1a7f4b;--verde-claro:#d4f5e2;--naranja:#d4541a;--naranja-claro:#fdebd0;--rojo:#c0392b;--rojo-claro:#fde8e6;--am:#b8860b;--am-claro:#fff8d0;--morado:#7b2d8b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Arial,sans-serif;font-size:15px;color:#222;background:#f0f2f5;}
+header{background:linear-gradient(135deg,#1a3a5c,#1a7f4b);color:#fff;padding:20px 28px;}
+header h1{font-size:1.3rem;font-weight:700;}
+header p{font-size:0.85rem;opacity:.85;margin-top:4px;}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;background:#1a3a5c;padding:8px 14px;position:sticky;top:0;z-index:99;}
+.tb{background:rgba(255,255,255,.18);color:#fff;border:none;border-radius:5px 5px 0 0;padding:8px 13px;cursor:pointer;font-size:.82rem;transition:background .2s;}
+.tb:hover{background:rgba(255,255,255,.32);}
+.tb.on{background:#fff;color:#1a3a5c;font-weight:700;}
+.panel{display:none;padding:22px 28px;max-width:1050px;margin:0 auto;}
+.panel.on{display:block;}
+.card{background:#fff;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.08);padding:16px 18px;margin-bottom:16px;}
+.card h3{font-size:.95rem;color:#1a3a5c;margin-bottom:9px;border-bottom:2px solid #e0e7ef;padding-bottom:5px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+@media(max-width:700px){.g2,.g3{grid-template-columns:1fr;}}
+.mbox{background:#eef4ff;border-left:4px solid var(--azul);border-radius:5px;padding:11px 16px;margin:9px 0;font-family:'Courier New',monospace;font-size:1rem;line-height:1.8;overflow-x:auto;}
+.mbox.g{background:#edfaf3;border-color:var(--verde);}
+.mbox.o{background:#fff5ee;border-color:var(--naranja);}
+.mbox.p{background:#f5f0ff;border-color:var(--morado);}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 3px;}
+.frac .num{border-bottom:1.5px solid currentColor;padding:0 4px;font-size:.9em;text-align:center;}
+.frac .den{padding:0 4px;font-size:.9em;text-align:center;}
+.eq{display:block;text-align:center;font-size:1.05rem;padding:8px 0;}
+.badge{display:inline-block;padding:3px 9px;border-radius:10px;font-size:.78rem;font-weight:700;}
+.b-bajo{background:var(--verde-claro);color:var(--verde);}
+.b-mod{background:var(--am-claro);color:var(--am);}
+.b-alto{background:var(--naranja-claro);color:var(--naranja);}
+.b-muy{background:var(--rojo-claro);color:var(--rojo);}
+table{width:100%;border-collapse:collapse;font-size:.85rem;}
+th{background:#1a3a5c;color:#fff;padding:7px 9px;text-align:left;}
+td{padding:6px 9px;border-bottom:1px solid #e5e5e5;}
+tr:nth-child(even) td{background:#f8fafc;}
+.rc{border-radius:7px;padding:14px;border-top:4px solid currentColor;}
+.rc.fis{background:#e8f4fd;color:#1565c0;}
+.rc.qui{background:#fde8e8;color:#c0392b;}
+.rc.bio{background:#e8fdf0;color:#1a7f4b;}
+.rc.loc{background:#fef9e7;color:#b8860b;}
+.rc h4{font-size:.9rem;margin-bottom:6px;}
+.rc ul{padding-left:15px;font-size:.83rem;}
+.rc li{margin-bottom:3px;}
+.note{background:#fffbe6;border-left:4px solid #f0c000;border-radius:4px;padding:8px 12px;font-size:.83rem;color:#555;margin:9px 0;}
+.ex{background:#f5f0ff;border-left:4px solid var(--morado);border-radius:6px;padding:14px 16px;margin:14px 0;}
+.ex h4{color:var(--morado);margin-bottom:8px;font-size:.92rem;}
+.sl{display:inline-block;font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:#1a3a5c;color:#fff;padding:3px 8px;border-radius:3px;margin-bottom:12px;}
+.gc{background:#fff;border-radius:7px;padding:12px 14px;border-left:4px solid var(--azul);box-shadow:0 1px 3px rgba(0,0,0,.07);}
+.gc h4{color:var(--azul);font-size:.9rem;margin-bottom:4px;}
+.gc p{font-size:.83rem;color:#444;}
+.cs{background:#fff;border-radius:8px;padding:16px 18px;margin-bottom:16px;box-shadow:0 2px 6px rgba(0,0,0,.08);}
+.cs h3{color:#1a3a5c;margin-bottom:13px;font-size:.92rem;}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:600px){.cg{grid-template-columns:1fr;}}
+.ig label{display:block;font-size:.78rem;color:#555;margin-bottom:2px;}
+.ig input{width:100%;padding:6px 9px;border:1px solid #ccc;border-radius:5px;font-size:.9rem;}
+.cb{background:var(--azul);color:#fff;border:none;border-radius:7px;padding:9px 20px;cursor:pointer;font-size:.9rem;margin-top:10px;width:100%;}
+.cb:hover{background:#1452a0;}
+.rb{margin-top:12px;padding:12px 14px;border-radius:6px;font-size:.88rem;background:#eef4ff;border:1px solid #c0d8f5;display:none;}
+.rb.on{display:block;}
+.rl{font-weight:700;font-size:.98rem;margin-top:6px;}
+</style>
+</head>
+<body>
+<header>
+  <h1>Conceptos Clave — Proyección de Enfermedades Laborales</h1>
+  <p>TSHO 4.° Semestre &nbsp;·&nbsp; JUANAUTOS TOYOTA — Cartagena &nbsp;·&nbsp; GTC 45</p>
+</header>
+<div class="tabs">
+  <button class="tb on" onclick="T('peligros',this)">① Peligros y Riesgos</button>
+  <button class="tb" onclick="T('ocra',this)">② Índice OCRA</button>
+  <button class="tb" onclick="T('niosh',this)">③ Ec. NIOSH</button>
+  <button class="tb" onclick="T('quimico',this)">④ Riesgo Químico</button>
+  <button class="tb" onclick="T('proyeccion',this)">⑤ Proyección Temporal</button>
+  <button class="tb" onclick="T('glosario',this)">⑥ Glosario</button>
+  <button class="tb" onclick="T('calculadora',this)">⑦ Calculadora</button>
+</div>
+
+<!-- ① PELIGROS -->
+<div id="p-peligros" class="panel on">
+  <span class="sl">GTC 45 · Identificación de peligros</span>
+  <div class="g2" style="margin-bottom:16px;">
+    <div class="rc fis"><h4>⚡ Físico</h4><ul><li>Ruido (motores, pistolas de agua)</li><li>Temperatura (vapor, agua caliente)</li><li>Vibración (pulidoras, compresores)</li><li>Iluminación deficiente</li></ul></div>
+    <div class="rc qui"><h4>⚗️ Químico</h4><ul><li>Solventes (desengrasantes, cera)</li><li>Detergentes alcalinos / ácidos</li><li>Aerosoles y vapores químicos</li><li>Exposición dérmica / inhalatoria</li></ul></div>
+    <div class="rc bio"><h4>🦴 Biomecánico</h4><ul><li>Movimientos repetitivos MMSS</li><li>Posturas forzadas (cuclillas, cuello)</li><li>Levantamiento y carga de objetos</li><li>Trabajo con brazos elevados</li></ul></div>
+    <div class="rc loc"><h4>🏗️ Locativo / Seguridad</h4><ul><li>Pisos húmedos (caídas)</li><li>Orden y aseo deficientes</li><li>Contacto eléctrico / agua</li><li>Vehículos en movimiento</li></ul></div>
+  </div>
+  <div class="card"><h3>Peligro vs. Riesgo (GTC 45)</h3>
+    <table><tr><th>Concepto</th><th>Definición</th><th>Ejemplo lavadero</th></tr>
+    <tr><td><b>Peligro</b></td><td>Fuente con potencial de causar daño</td><td>Desengrasante con benceno</td></tr>
+    <tr><td><b>Riesgo</b></td><td>Probabilidad × Consecuencia</td><td>Probabilidad de dermatitis + severidad</td></tr>
+    <tr><td><b>Exposición</b></td><td>Tiempo/frecuencia en contacto</td><td>8 h/día, 5 días/semana</td></tr></table>
+  </div>
+  <div class="card"><h3>Jerarquía de controles</h3>
+    <table><tr><th>Nivel</th><th>Estrategia</th><th>Ejemplo</th></tr>
+    <tr><td>1 — Eliminación</td><td>Suprimir el peligro</td><td>Reemplazar solvente por agua</td></tr>
+    <tr><td>2 — Sustitución</td><td>Producto menos tóxico</td><td>Detergente biodegradable</td></tr>
+    <tr><td>3 — Control ing.</td><td>Aislar la fuente</td><td>Ventilación localizada</td></tr>
+    <tr><td>4 — Control adm.</td><td>Cambiar prácticas</td><td>Rotación, pausas activas</td></tr>
+    <tr><td>5 — EPP</td><td>Última línea de defensa</td><td>Guantes nitrilo, mascarilla, botas</td></tr></table>
+  </div>
+</div>
+
+<!-- ② OCRA -->
+<div id="p-ocra" class="panel">
+  <span class="sl">Método OCRA — Occhipinti &amp; Colombini</span>
+  <div class="card"><h3>Fórmula del Índice OCRA</h3>
+    <div class="mbox"><span class="eq">OCRA = ( F<sub>R</sub> + F<sub>fuerza</sub> + F<sub>P</sub> + F<sub>Ad</sub> + F<sub>F</sub> ) × F<sub>D</sub></span></div>
+    <table><tr><th>Factor</th><th>Símbolo</th><th>¿Qué mide?</th></tr>
+    <tr><td>Frecuencia de acciones técnicas</td><td>F<sub>R</sub></td><td>Acciones/min (video o cronómetro)</td></tr>
+    <tr><td>Factor de fuerza</td><td>F<sub>fuerza</sub></td><td>Escala CR-10 de Borg (0–10)</td></tr>
+    <tr><td>Factor de postura</td><td>F<sub>P</sub></td><td>Hombro, codo, muñeca, mano</td></tr>
+    <tr><td>Factores adicionales</td><td>F<sub>Ad</sub></td><td>Vibración, compresión, guantes</td></tr>
+    <tr><td>Falta de descanso</td><td>F<sub>F</sub></td><td>Función de la duración de la tarea</td></tr>
+    <tr><td>Factor de duración</td><td>F<sub>D</sub></td><td>Multiplicador por horas de exposición</td></tr></table>
+  </div>
+  <div class="card"><h3>F<sub>F</sub> según duración de la tarea</h3>
+    <div class="mbox">
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:3px 14px;align-items:center;">
+        <span style="text-align:right;">F<sub>F</sub> = 0</span><span>si t &lt; 20 min</span>
+        <span style="text-align:right;">F<sub>F</sub> = 4</span><span>si 20 ≤ t ≤ 40 min</span>
+        <span style="text-align:right;">F<sub>F</sub> = 8</span><span>si 40 &lt; t ≤ 60 min</span>
+        <span style="text-align:right;">F<sub>F</sub> = 10</span><span>si t &gt; 60 min</span>
+      </div>
+    </div>
+  </div>
+  <div class="g2">
+    <div class="card"><h3>Interpretación OCRA</h3>
+      <table><tr><th>OCRA</th><th>Nivel</th></tr>
+      <tr><td>≤ 2.2</td><td><span class="badge b-bajo">ÓPTIMO</span></td></tr>
+      <tr><td>2.3 – 3.5</td><td><span class="badge b-bajo">ACEPTABLE</span></td></tr>
+      <tr><td>3.6 – 9.0</td><td><span class="badge b-mod">MODERADO</span></td></tr>
+      <tr><td>9.1 – 14.0</td><td><span class="badge b-alto">ALTO</span></td></tr>
+      <tr><td>&gt; 14.0</td><td><span class="badge b-muy">MUY ALTO</span></td></tr></table>
+    </div>
+    <div class="card"><h3>Modelo predictivo de prevalencia</h3>
+      <div class="mbox g"><span class="eq">PA(%) = 2.02 × OCRA + 0.075 × SR</span></div>
+      <p style="font-size:.83rem;color:#555;">SR = % mujeres en el grupo (0–100).<br>Fuente: Occhipinti &amp; Colombini (2007). R² = 0.96</p>
+      <div class="note">Predice el <b>% de trabajadores</b> que desarrollarán DME si no se interviene.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ③ NIOSH -->
+<div id="p-niosh" class="panel">
+  <span class="sl">Ecuación NIOSH — Waters et al. 1993</span>
+  <div class="card"><h3>Límite de Peso Recomendado (LPR)</h3>
+    <div class="mbox"><span class="eq">LPR = 23 × HM × VM × DM × AM × FM × CM</span></div>
+    <div class="g2" style="margin-top:12px;">
+      <div><p style="font-size:.84rem;margin-bottom:4px;"><b>HM</b> — Factor horizontal:</p>
+        <div class="mbox" style="text-align:center;">HM = <span class="frac"><span class="num">25</span><span class="den">H</span></span> &nbsp;<span style="font-size:.8rem;color:#555;">(H en cm)</span></div></div>
+      <div><p style="font-size:.84rem;margin-bottom:4px;"><b>VM</b> — Factor vertical:</p>
+        <div class="mbox" style="text-align:center;">VM = 1 − 0.003 × |V − 75|<br><span style="font-size:.78rem;color:#555;">(V en cm)</span></div></div>
+      <div><p style="font-size:.84rem;margin-bottom:4px;"><b>DM</b> — Desplazamiento:</p>
+        <div class="mbox" style="text-align:center;">DM = 0.82 + <span class="frac"><span class="num">4.5</span><span class="den">D</span></span> &nbsp;<span style="font-size:.8rem;color:#555;">(D en cm)</span></div></div>
+      <div><p style="font-size:.84rem;margin-bottom:4px;"><b>AM</b> — Asimetría:</p>
+        <div class="mbox" style="text-align:center;">AM = 1 − 0.0032 × A<br><span style="font-size:.78rem;color:#555;">(A en grados)</span></div></div>
+    </div>
+  </div>
+  <div class="card"><h3>Índice de Levantamiento (IL)</h3>
+    <div class="mbox g" style="text-align:center;">IL = <span class="frac"><span class="num">LC</span><span class="den">LPR</span></span> &nbsp;&nbsp;<span style="font-size:.83rem;color:#555;">LC = peso real de la carga (kg)</span></div>
+    <table><tr><th>IL</th><th>Riesgo</th><th>Acción</th></tr>
+    <tr><td>&lt; 1.0</td><td><span class="badge b-bajo">BAJO</span></td><td>Carga aceptable</td></tr>
+    <tr><td>1.0 – 2.0</td><td><span class="badge b-mod">MODERADO</span></td><td>Rediseñar puesto</td></tr>
+    <tr><td>2.0 – 3.0</td><td><span class="badge b-alto">ALTO</span></td><td>Intervención prioritaria</td></tr>
+    <tr><td>&gt; 3.0</td><td><span class="badge b-muy">MUY ALTO</span></td><td>Intervención inmediata</td></tr></table>
+  </div>
+</div>
+
+<!-- ④ QUÍMICO -->
+<div id="p-quimico" class="panel">
+  <span class="sl">Método INRS — Riesgo Químico</span>
+  <div class="card"><h3>Índice de Riesgo Químico (IRQ)</h3>
+    <div class="mbox o"><span class="eq">IRQ = H × Q × V</span></div>
+  </div>
+  <div class="g3">
+    <div class="card"><h3>H — Peligrosidad</h3>
+      <table><tr><th>H</th><th>Clasificación</th></tr>
+      <tr><td>1</td><td>Irritante leve</td></tr><tr><td>2</td><td>Nocivo</td></tr>
+      <tr><td>4</td><td>Tóxico</td></tr><tr><td>8</td><td>Muy tóxico</td></tr>
+      <tr><td>10</td><td>Extrem. tóxico</td></tr></table>
+      <div class="note" style="margin-top:8px;">Se obtiene de la Hoja de Seguridad (SDS).</div>
+    </div>
+    <div class="card"><h3>Q — Cantidad/turno</h3>
+      <table><tr><th>Q</th><th>Cantidad</th></tr>
+      <tr><td>1</td><td>&lt; 100 g/mL</td></tr><tr><td>2</td><td>100 g – 1 kg</td></tr>
+      <tr><td>4</td><td>1 – 10 kg</td></tr><tr><td>8</td><td>10 – 100 kg</td></tr>
+      <tr><td>10</td><td>&gt; 100 kg</td></tr></table>
+    </div>
+    <div class="card"><h3>V — Volatilidad</h3>
+      <table><tr><th>V</th><th>Condición</th></tr>
+      <tr><td>1</td><td>Sólido grueso</td></tr><tr><td>2</td><td>Líq. PM bajo</td></tr>
+      <tr><td>4</td><td>Líq. PM alto</td></tr><tr><td>8</td><td>Gas / vapor</td></tr>
+      <tr><td>10</td><td>Aerosol fino</td></tr></table>
+    </div>
+  </div>
+  <div class="card"><h3>Interpretación IRQ</h3>
+    <table><tr><th>IRQ</th><th>Nivel</th><th>Acción</th></tr>
+    <tr><td>1 – 8</td><td><span class="badge b-bajo">BAJO</span></td><td>Mantener buenas prácticas</td></tr>
+    <tr><td>9 – 32</td><td><span class="badge b-mod">MODERADO</span></td><td>Mejorar ventilación y EPP</td></tr>
+    <tr><td>33 – 64</td><td><span class="badge b-alto">ALTO</span></td><td>Evaluar con higienista, sustituir</td></tr>
+    <tr><td>&gt; 64</td><td><span class="badge b-muy">MUY ALTO</span></td><td>Suspender actividad inmediatamente</td></tr></table>
+  </div>
+</div>
+
+<!-- ⑤ PROYECCIÓN -->
+<div id="p-proyeccion" class="panel">
+  <span class="sl">Modelos de proyección temporal</span>
+  <div class="card"><h3>Dosis anual normalizada</h3>
+    <div class="mbox" style="text-align:center;">
+      D<sub>anual</sub> = <span class="frac"><span class="num">h/día × días/sem × 52</span><span class="den">8 × 240</span></span>
+    </div>
+    <p style="font-size:.83rem;color:#555;margin-top:7px;">Normaliza la exposición real respecto a la jornada de referencia (8 h/día × 240 días/año).</p>
+  </div>
+  <div class="card"><h3>Tiempo proyectado hasta aparición de enfermedad</h3>
+    <div class="mbox g" style="text-align:center;">
+      T<sub>proyección</sub> = <span class="frac"><span class="num">Umbral</span><span class="den">D<sub>anual</sub> × F<sub>riesgo</sub></span></span>
+    </div>
+    <div class="mbox g" style="text-align:center;margin-top:6px;">
+      T<sub>restante</sub> = T<sub>proyección</sub> − Antigüedad<sub>trabajador</sub>
+    </div>
+    <div class="note">Si T<sub>restante</sub> ≤ 0 → umbral ya <b>superado</b>. Si T<sub>restante</sub> &gt; 0 → enfermedad proyectada en esos años.</div>
+    <table style="margin-top:12px;"><tr><th>Riesgo</th><th>Umbral (años)</th><th>F<sub>riesgo</sub></th><th>Enfermedad</th></tr>
+    <tr><td>OCRA moderado (3.6–9)</td><td>5</td><td>1.0</td><td>STC leve</td></tr>
+    <tr><td>OCRA alto (9–14)</td><td>3</td><td>1.5</td><td>Tendinitis / STC moderado</td></tr>
+    <tr><td>OCRA muy alto (&gt;14)</td><td>2</td><td>2.0</td><td>STC severo / epicondilitis</td></tr>
+    <tr><td>IL moderado (1–2)</td><td>7</td><td>1.0</td><td>Lumbalgia crónica</td></tr>
+    <tr><td>IL alto (2–3)</td><td>4</td><td>1.5</td><td>Hernia discal L4-L5</td></tr>
+    <tr><td>IRQ alto (33–64)</td><td>10</td><td>1.0</td><td>Dermatitis / asma ocu.</td></tr></table>
+  </div>
+  <div class="card"><h3>Ley de Haber — Dosis acumulada (riesgo químico)</h3>
+    <div class="mbox o"><span class="eq">C × t = k</span></div>
+    <p style="font-size:.83rem;color:#555;">C = concentración &nbsp;·&nbsp; t = tiempo de exposición &nbsp;·&nbsp; k = constante toxicológica (SDS / TLV-ACGIH)</p>
+  </div>
+  <div class="ex">
+    <h4>Ejemplo resuelto — Carlos A., operario de lavado</h4>
+    <p style="font-size:.83rem;margin-bottom:8px;"><b>Datos:</b> 32 años, 5 años de antigüedad, 8 h/día, 5 días/sem. OCRA = 26 (muy alto), SR = 0%.</p>
+    <p style="font-size:.84rem;margin-bottom:3px;"><b>1. Prevalencia esperada:</b></p>
+    <div class="mbox p" style="text-align:center;">PA = 2.02 × 26 + 0.075 × 0 = <b>52.5%</b></div>
+    <p style="font-size:.84rem;margin:7px 0 3px;"><b>2. Dosis anual:</b></p>
+    <div class="mbox p" style="text-align:center;">
+      D<sub>anual</sub> = <span class="frac"><span class="num">8 × 5 × 52</span><span class="den">8 × 240</span></span> = <span class="frac"><span class="num">2 080</span><span class="den">1 920</span></span> ≈ <b>1.083</b>
+    </div>
+    <p style="font-size:.84rem;margin:7px 0 3px;"><b>3. Proyección (umbral = 2 años, F<sub>riesgo</sub> = 2.0):</b></p>
+    <div class="mbox p" style="text-align:center;">
+      T<sub>proy</sub> = <span class="frac"><span class="num">2</span><span class="den">1.083 × 2.0</span></span> ≈ <b>0.92 años</b>
+      &nbsp;&nbsp;→&nbsp;&nbsp;
+      T<sub>rest</sub> = 0.92 − 5 = <b>−4.08 años</b>
+    </div>
+    <p style="font-size:.86rem;color:var(--morado);font-weight:700;margin-top:9px;">Conclusión: umbral superado → riesgo de STC severo. Intervención INMEDIATA.</p>
+  </div>
+</div>
+
+<!-- ⑥ GLOSARIO -->
+<div id="p-glosario" class="panel">
+  <span class="sl">Glosario de términos clave</span>
+  <div class="g2">
+    <div class="gc"><h4>GTC 45</h4><p>Guía Técnica Colombiana para identificación de peligros y valoración de riesgos en SST. Base de la matriz de riesgos.</p></div>
+    <div class="gc"><h4>Índice OCRA</h4><p>Occupational Repetitive Actions Index. Evalúa riesgo de DME de miembro superior por movimientos repetitivos (Occhipinti &amp; Colombini, 1998).</p></div>
+    <div class="gc"><h4>DME</h4><p>Desórdenes Musculoesqueléticos. Lesiones de músculos, tendones y nervios. Ej.: STC, tendinitis, lumbalgia.</p></div>
+    <div class="gc"><h4>LPR — Límite de Peso Recomendado</h4><p>Peso máximo levantable sin riesgo de lesión lumbar, según la ecuación NIOSH.</p></div>
+    <div class="gc"><h4>IL — Índice de Levantamiento</h4><p>Cociente LC/LPR. IL &gt; 1 indica riesgo musculoesquelético; IL &gt; 3 requiere intervención inmediata.</p></div>
+    <div class="gc"><h4>IRQ — Índice de Riesgo Químico</h4><p>Método semicuantitativo INRS que combina peligrosidad (H), cantidad (Q) y volatilidad (V).</p></div>
+    <div class="gc"><h4>SDS / Hoja de Seguridad</h4><p>Safety Data Sheet. Documento obligatorio con composición, peligros, primeros auxilios y toxicología del producto.</p></div>
+    <div class="gc"><h4>Dosis acumulada</h4><p>Cantidad total de un factor nocivo recibida durante el tiempo de exposición. Base del modelo de proyección.</p></div>
+    <div class="gc"><h4>Umbral de enfermedad</h4><p>Nivel de dosis acumulada a partir del cual se manifiesta la enfermedad laboral, en años de exposición normalizada.</p></div>
+    <div class="gc"><h4>Cuestionario Nórdico (Kuorinka)</h4><p>Instrumento estandarizado para identificar síntomas musculoesqueléticos en 9 zonas corporales.</p></div>
+    <div class="gc"><h4>Decreto 1072 de 2015</h4><p>Decreto Único Reglamentario del Sector Trabajo en Colombia. Define lineamientos del SG-SST.</p></div>
+    <div class="gc"><h4>Resolución 0312 de 2019</h4><p>Define los Estándares Mínimos del SG-SST según tamaño de empresa en Colombia.</p></div>
+  </div>
+</div>
+
+<!-- ⑦ CALCULADORA -->
+<div id="p-calculadora" class="panel">
+  <span class="sl">Calculadoras interactivas</span>
+  <div class="cs">
+    <h3>Calculadora OCRA + Prevalencia estimada</h3>
+    <div class="cg">
+      <div class="ig"><label>F<sub>R</sub> — Factor frecuencia (0–10)</label><input type="number" id="or" value="6" min="0" max="10" step="0.5"></div>
+      <div class="ig"><label>F<sub>fuerza</sub> — Factor fuerza (0–6)</label><input type="number" id="of" value="4" min="0" max="6" step="0.5"></div>
+      <div class="ig"><label>F<sub>P</sub> — Factor postura (0–8)</label><input type="number" id="op" value="5" min="0" max="8" step="0.5"></div>
+      <div class="ig"><label>F<sub>Ad</sub> — Factores adicionales (0–3)</label><input type="number" id="oad" value="2" min="0" max="3" step="0.5"></div>
+      <div class="ig"><label>F<sub>F</sub> — Falta descanso (0/4/8/10)</label><input type="number" id="ofs" value="8" min="0" max="10" step="4"></div>
+      <div class="ig"><label>F<sub>D</sub> — Factor duración (0.5–1.5)</label><input type="number" id="ofd" value="1" min="0.5" max="1.5" step="0.1"></div>
+      <div class="ig"><label>SR — % mujeres en el grupo</label><input type="number" id="osr" value="0" min="0" max="100"></div>
+    </div>
+    <button class="cb" onclick="cOCRA()">Calcular OCRA</button>
+    <div class="rb" id="or2"></div>
+  </div>
+  <div class="cs">
+    <h3>Calculadora NIOSH — Índice de Levantamiento</h3>
+    <div class="cg">
+      <div class="ig"><label>LC — Peso de la carga (kg)</label><input type="number" id="nlc" value="15" min="0" step="0.5"></div>
+      <div class="ig"><label>H — Distancia horizontal (cm)</label><input type="number" id="nh" value="35" min="25" max="63"></div>
+      <div class="ig"><label>V — Altura inicial de agarre (cm)</label><input type="number" id="nv" value="60" min="0" max="175"></div>
+      <div class="ig"><label>D — Desplazamiento vertical (cm)</label><input type="number" id="nd" value="40" min="1" max="175"></div>
+      <div class="ig"><label>A — Ángulo asimetría (°)</label><input type="number" id="na" value="0" min="0" max="135"></div>
+      <div class="ig"><label>FM — Factor frecuencia (0.2–1.0)</label><input type="number" id="nfm" value="0.85" min="0.2" max="1" step="0.05"></div>
+      <div class="ig"><label>CM — Factor agarre (0.9–1.0)</label><input type="number" id="ncm" value="1" min="0.9" max="1" step="0.05"></div>
+    </div>
+    <button class="cb" onclick="cNIOSH()">Calcular IL</button>
+    <div class="rb" id="nr2"></div>
+  </div>
+  <div class="cs">
+    <h3>Calculadora de Proyección Temporal</h3>
+    <div class="cg">
+      <div class="ig"><label>Umbral (años, según tabla)</label><input type="number" id="pu" value="3" min="0.5" step="0.5"></div>
+      <div class="ig"><label>Horas de trabajo por día</label><input type="number" id="ph" value="8" min="1" max="12" step="0.5"></div>
+      <div class="ig"><label>Días trabajados por semana</label><input type="number" id="pd" value="5" min="1" max="7"></div>
+      <div class="ig"><label>Factor de riesgo F<sub>riesgo</sub></label><input type="number" id="pf" value="1.5" min="0.5" max="3" step="0.1"></div>
+      <div class="ig"><label>Antigüedad del trabajador (años)</label><input type="number" id="pa" value="5" min="0" step="0.5"></div>
+    </div>
+    <button class="cb" onclick="cProy()">Calcular proyección</button>
+    <div class="rb" id="pr2"></div>
+  </div>
+</div>
+
+<script>
+function T(id,btn){
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tb').forEach(function(b){b.classList.remove('on');});
+  document.getElementById('p-'+id).classList.add('on');
+  btn.classList.add('on');
+}
+function cOCRA(){
+  var fr=+document.getElementById('or').value,ff=+document.getElementById('of').value,
+      fp=+document.getElementById('op').value,fad=+document.getElementById('oad').value,
+      ffs=+document.getElementById('ofs').value,fd=+document.getElementById('ofd').value,
+      sr=+document.getElementById('osr').value;
+  var ocra=((fr+ff+fp+fad+ffs)*fd).toFixed(2);
+  var pa=(2.02*ocra+0.075*sr).toFixed(1);
+  var n,b;
+  if(ocra<=2.2){n='ÓPTIMO';b='b-bajo';}else if(ocra<=3.5){n='ACEPTABLE';b='b-bajo';}
+  else if(ocra<=9){n='MODERADO';b='b-mod';}else if(ocra<=14){n='ALTO';b='b-alto';}
+  else{n='MUY ALTO';b='b-muy';}
+  var box=document.getElementById('or2');
+  box.innerHTML='<div>Suma factores: <b>'+(fr+ff+fp+fad+ffs).toFixed(1)+'</b> × F<sub>D</sub>('+fd+')</div>'
+    +'<div class="rl">OCRA = <b>'+ocra+'</b> → <span class="badge '+b+'">'+n+'</span></div>'
+    +'<div style="margin-top:6px;">Prevalencia estimada: <b>PA = '+pa+'%</b> podrían desarrollar DME.</div>';
+  box.classList.add('on');
+}
+function cNIOSH(){
+  var lc=+document.getElementById('nlc').value,H=+document.getElementById('nh').value,
+      V=+document.getElementById('nv').value,D=+document.getElementById('nd').value,
+      A=+document.getElementById('na').value,fm=+document.getElementById('nfm').value,
+      cm=+document.getElementById('ncm').value;
+  var hm=Math.min(1,25/H),vm=Math.max(0,1-0.003*Math.abs(V-75)),
+      dm=Math.max(0,0.82+4.5/D),am=Math.max(0,1-0.0032*A);
+  var lpr=(23*hm*vm*dm*am*fm*cm).toFixed(2),il=(lc/lpr).toFixed(2);
+  var n,b;
+  if(il<1){n='BAJO';b='b-bajo';}else if(il<2){n='MODERADO';b='b-mod';}
+  else if(il<3){n='ALTO';b='b-alto';}else{n='MUY ALTO';b='b-muy';}
+  var box=document.getElementById('nr2');
+  box.innerHTML='<table><tr><th>Factor</th><th>Valor</th></tr>'
+    +'<tr><td>HM</td><td>'+hm.toFixed(3)+'</td></tr><tr><td>VM</td><td>'+vm.toFixed(3)+'</td></tr>'
+    +'<tr><td>DM</td><td>'+dm.toFixed(3)+'</td></tr><tr><td>AM</td><td>'+am.toFixed(3)+'</td></tr>'
+    +'<tr><td>FM</td><td>'+fm+'</td></tr><tr><td>CM</td><td>'+cm+'</td></tr></table>'
+    +'<div style="margin-top:8px;">LPR = <b>'+lpr+' kg</b></div>'
+    +'<div class="rl">IL = '+lc+'/'+lpr+' = <b>'+il+'</b> → <span class="badge '+b+'">'+n+'</span></div>';
+  box.classList.add('on');
+}
+function cProy(){
+  var u=+document.getElementById('pu').value,h=+document.getElementById('ph').value,
+      d=+document.getElementById('pd').value,f=+document.getElementById('pf').value,
+      a=+document.getElementById('pa').value;
+  var da=(h*d*52)/(8*240),tp=u/(da*f),tr=tp-a;
+  var e,b;
+  if(tr<=0){e='UMBRAL SUPERADO — intervención inmediata';b='b-muy';}
+  else if(tr<=2){e='CRÍTICO — menos de 2 años';b='b-alto';}
+  else if(tr<=5){e='VIGILANCIA prioritaria';b='b-mod';}
+  else{e='Riesgo diferido';b='b-bajo';}
+  var box=document.getElementById('pr2');
+  box.innerHTML='<div>D<sub>anual</sub> = ('+h+'×'+d+'×52)/(8×240) = <b>'+da.toFixed(3)+'</b></div>'
+    +'<div>T<sub>proy</sub> = '+u+'/('+da.toFixed(3)+'×'+f+') = <b>'+tp.toFixed(2)+' años</b></div>'
+    +'<div>T<sub>rest</sub> = '+tp.toFixed(2)+' − '+a+' = <b>'+tr.toFixed(2)+' años</b></div>'
+    +'<div class="rl" style="margin-top:8px;"><span class="badge '+b+'">'+e+'</span></div>';
+  box.classList.add('on');
+}
+</script>
+</body>
+</html>
